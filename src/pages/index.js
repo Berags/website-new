@@ -1,52 +1,84 @@
 import {
   Link as ChakraLink,
+  Heading,
   Text,
-  Code,
   List,
-  ListIcon,
+  Center,
+  Flex,
   ListItem,
-} from '@chakra-ui/react'
-import { CheckCircleIcon, LinkIcon } from '@chakra-ui/icons'
-import { Hero } from '../components/Hero'
-import { Container } from '../components/Container'
-import { Main } from '../components/Main'
-import { DarkModeSwitch } from '../components/DarkModeSwitch'
-import { CTA } from '../components/CTA'
-import { Footer } from '../components/Footer'
+} from "@chakra-ui/react";
+import { Hero } from "../components/Hero";
+import { Container } from "../components/Container";
+import { Main } from "../components/Main";
+import { DarkModeSwitch } from "../components/DarkModeSwitch";
+import { Footer } from "../components/Footer";
+import { GitHubLink } from "../components/GitHubLink";
+import { LinkedinLink } from "../components/LinkedinLink";
+import { ProjectLink } from "../components/ProjectLink";
+import { useWindowSize } from "../utils/size";
+import { MotionBox } from "../components/MotionBox";
 
-const Index = () => (
-  <Container height="100vh">
-    <Hero />
-    <Main>
-      <Text fontSize={22}>full stack developer, software developer, software architect.</Text>
+const Index = () => {
+  const size = useWindowSize();
+  
+  if (size.width <= 1700 && size.height >= 387 && size.height <= 826) {
+    return (
+      <Container height="100vh">
+        <Flex justifyContent="center" alignItems="center" height="100vh" mb={8}>
+          <Heading fontSize={60}>jacopo beragnoli</Heading>
+        </Flex>
+        <br />
+        <br />
+        <Main>
+          <Center fontSize={"120%"}>
+            full stack developer, software developer, software architect.
+          </Center>
+          <List spacing={3} my={0} mt={4}>
+            <ListItem>
+              <ProjectLink />
+            </ListItem>
+            <ListItem>
+              <GitHubLink />
+            </ListItem>
+            <ListItem>
+              <LinkedinLink />
+            </ListItem>
+          </List>
+        </Main>
 
-      <List spacing={3} my={0}>
-        <ListItem>
-          <ListIcon as={CheckCircleIcon} color="green.500" />
-          <ChakraLink
-            isExternal
-            href="https://chakra-ui.com"
-            flexGrow={1}
-            mr={2}
-          >
-            Chakra UI <LinkIcon />
-          </ChakraLink>
-        </ListItem>
-        <ListItem>
-          <ListIcon as={CheckCircleIcon} color="green.500" />
-          <ChakraLink isExternal href="https://nextjs.org" flexGrow={1} mr={2}>
-            Next.js <LinkIcon />
-          </ChakraLink>
-        </ListItem>
-      </List>
-    </Main>
+        <DarkModeSwitch />
+        <Footer>
+          <Text>jacopo beragnoli - &copy; 2021</Text>
+        </Footer>
+      </Container>
+    );
+  }
+  return (
+    <Container height="100vh">
+      <Hero />
+      <Main>
+        <Center fontSize={"150%"}>
+          full stack developer, software developer, software architect.
+        </Center>
+        <List spacing={3} my={0}>
+          <ListItem>
+            <ProjectLink />
+          </ListItem>
+          <ListItem>
+            <GitHubLink />
+          </ListItem>
+          <ListItem>
+            <LinkedinLink />
+          </ListItem>
+        </List>
+      </Main>
 
-    <DarkModeSwitch />
-    <Footer>
-      <Text>Next ❤️ Chakra</Text>
-    </Footer>
-    <CTA />
-  </Container>
-);
+      <DarkModeSwitch />
+      <Footer>
+        <Text>jacopo beragnoli - &copy; 2021</Text>
+      </Footer>
+    </Container>
+  );
+};
 
-export default Index
+export default Index;
